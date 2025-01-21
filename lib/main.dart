@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
   const Main({super.key});
+
+  @override
+  _MainState createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    Center(child: Text('Search Page')),
+    Center(child: Text('Saved Hotels')),
+    Center(child: Text('Help Page')),
+    Center(child: Text('Profile Page')),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,28 +29,20 @@ class Main extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sleep Stay'),
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.deepPurple,
+        // backgroundColor: Colors.deepPurple,
       ),
-      body: Center(
+      body: _selectedIndex == 0
+          ? Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Find Your Perfect Stay!',
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                ),
-                textAlign: TextAlign.center,
-              ),
               const SizedBox(height: 20),
               ClipRRect(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
-                  'assets/images/image1.jpg',
+                  'assets/image1.jpeg',
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 180,
@@ -47,7 +59,8 @@ class Main extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Card(
-                elevation: 3,
+                elevation: 0,
+                color: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -117,31 +130,14 @@ class Main extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    backgroundColor: Colors.redAccent,
-                  ),
-                  child: const Text(
-                    'Logout',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
-      ),
+      )
+          : _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         backgroundColor: Colors.pink[100],
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
@@ -153,8 +149,12 @@ class Main extends StatelessWidget {
             label: 'Search',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark_border),
+            label: 'Save',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.chat_bubble_outline),
-            label: 'Messages',
+            label: 'Help',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
