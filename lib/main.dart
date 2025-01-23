@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Offers.dart';
+import 'saved.dart';
+import 'accountmanagement.dart';
 
 class Main extends StatefulWidget {
   const Main({super.key});
@@ -13,9 +15,9 @@ class _MainState extends State<Main> {
 
   final List<Widget> _pages = [
     Center(child: Text('Search Page')),
-    Center(child: Text('Saved Hotels')),
+    SavedPage(),
     Center(child: Text('Help Page')),
-    Center(child: Text('Profile Page')),
+    MenuScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -30,16 +32,14 @@ class _MainState extends State<Main> {
       appBar: AppBar(
         title: const Text('Sleep Stay'),
         automaticallyImplyLeading: false,
-        // backgroundColor: Colors.deepPurple,
       ),
       body: _selectedIndex == 0
-          ? Center(
+          ? SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
@@ -135,6 +135,48 @@ class _MainState extends State<Main> {
                     ],
                   ),
                 ),
+              ),
+              const SizedBox(height: 20),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 300,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.pink.shade50,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'City, Country',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          "50",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ],
           ),

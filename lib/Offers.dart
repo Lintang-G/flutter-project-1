@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'main.dart'; // Import your main page
+import 'main.dart';
+import 'saved.dart';
 
 class Offers extends StatefulWidget {
   const Offers({super.key});
@@ -20,7 +21,7 @@ class _OffersState extends State<Offers> {
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Main()), // Navigate to SavedHotelsPage
+          MaterialPageRoute(builder: (context) => SavedPage()), // Navigate to SavedHotelsPage
         );
         break;
       case 2:
