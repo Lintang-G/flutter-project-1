@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Offers.dart';
 
 class Main extends StatefulWidget {
   const Main({super.key});
@@ -109,7 +110,12 @@ class _MainState extends State<Main> {
                       SizedBox(
                         width: double.infinity,
                         child: FilledButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const Offers()),
+                            );
+                          },
                           style: FilledButton.styleFrom(
                             backgroundColor: Colors.deepPurple,
                             padding: const EdgeInsets.symmetric(vertical: 16),
