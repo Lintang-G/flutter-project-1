@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Offers.dart';
 import 'saved.dart';
 import 'accountmanagement.dart';
+import 'help.dart';
 
 class Main extends StatefulWidget {
   const Main({super.key});
@@ -16,7 +17,7 @@ class _MainState extends State<Main> {
   final List<Widget> _pages = [
     Center(child: Text('Search Page')),
     SavedPage(),
-    Center(child: Text('Help Page')),
+    Help(),
     MenuScreen(),
   ];
 
@@ -25,6 +26,18 @@ class _MainState extends State<Main> {
       _selectedIndex = index;
     });
   }
+
+  final List<Map<String, String>> _carouselItems = [
+    //{'title': 'Terdekat', 'icon: Icon(Icons.chat_bubble_outline)'},
+    {'title': 'Bali', 'image': 'assets/bali.jpeg'},
+    {'title': 'Medan', 'image': 'assets/medan.jpeg'},
+    {'title': 'Jakarta', 'image': 'assets/jakarta.jpg'},
+    {'title': 'Surabaya', 'image': 'assets/surabaya.jpeg'},
+    {'title': 'Bali', 'image': 'assets/bali.jpeg'},
+    {'title': 'Medan', 'image': 'assets/medan.jpeg'},
+    {'title': 'Jakarta', 'image': 'assets/jakarta.jpg'},
+    {'title': 'Surabaya', 'image': 'assets/surabaya.jpeg'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +72,9 @@ class _MainState extends State<Main> {
                 ),
                 textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 16),
+
+              const SizedBox(height: 16),
               Card(
                 elevation: 0,
                 color: Colors.transparent,
@@ -117,7 +133,7 @@ class _MainState extends State<Main> {
                             );
                           },
                           style: FilledButton.styleFrom(
-                            backgroundColor: Colors.deepPurple,
+                            backgroundColor: Colors.blueAccent,
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -136,47 +152,38 @@ class _MainState extends State<Main> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 300,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.pink.shade50,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(8),
+              // Carousel Widget
+              const SizedBox(height: 24),
+              SizedBox(
+                height: 120,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _carouselItems.length,
+                  itemBuilder: (context, index) {
+                    final item = _carouselItems[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              item['image']!,
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'City, Country',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                          const SizedBox(height: 8),
+                          Text(
+                            item['title']!,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        Text(
-                          "50",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

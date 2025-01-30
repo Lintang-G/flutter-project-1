@@ -23,9 +23,11 @@ class Signup extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Signup',
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              Center(
+                child: const Text(
+                  'Signup',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 40),
 
@@ -94,7 +96,7 @@ class Signup extends StatelessWidget {
                     );
                   },
                   style: FilledButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: Colors.blueAccent,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -111,12 +113,15 @@ class Signup extends StatelessWidget {
               ),
 
               // Back to Login
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context); // Navigate back to the login page
-                },
-                child: const Text('Already have an account? Login'),
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Navigate back to the login page
+                  },
+                  child: const Text('Already have an account? Login'),
+                ),
               ),
+
             ],
           ),
         ),
