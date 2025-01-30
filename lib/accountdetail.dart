@@ -1,102 +1,73 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class detail extends StatelessWidget {
+  const detail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const AccountPage(),
-    );
+    return const MenuScreen();
   }
 }
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({Key? key}) : super(key: key);
+class MenuScreen extends StatelessWidget {
+  const MenuScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 191, 213, 223),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header Profil dengan tanda kembali
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const Text(
+                  'Account Settings',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16.0),
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.white, // Warna putih untuk latar belakang
+                color: Colors.blueAccent,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.black),
-                    onPressed: () {
-                      // Aksi untuk kembali
-                    },
+                  const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person, color: Colors.black),
                   ),
-                  const SizedBox(width: 8),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.grey[200],
-                    backgroundImage: AssetImage('assets/images.jpeg'), // Foto bulat
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 8), // Tambah spasi antara nama dan bawahnya
-                        Row(
-                          children: [
-                            const Text(
-                              '15% Profil selesai       ',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            const SizedBox(width: 8),
-                            Stack(
-                              children: [
-                                Container(
-                                  height: 5,
-                                  width: 150, // Lebar total garis abu-abu
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[300],
-                                    borderRadius: BorderRadius.circular(2.5),
-                                  ),
-                                ),
-                                Container(
-                                  height: 5,
-                                  width: 26, // Lebar warna merah sesuai persentase
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(2.5),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        'Account user',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      Text(
+                        'user@gmail.com',
+                        style: TextStyle(color: Colors.white60, fontSize: 14),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 20),
-
-            // Form Input
             Expanded(
               child: ListView(
                 children: [
@@ -110,22 +81,27 @@ class AccountPage extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Tombol Simpan
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20.0), // Naikkan sedikit
-              child: ElevatedButton(
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
                 onPressed: () {
-                  // Aksi Simpan
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Main()),
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
+                style: FilledButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
                 child: const Text(
-                  'Simpan Perubahan',
+                  'Simpan perubahan',
                   style: TextStyle(
+                    color: Colors.white,
                     fontSize: 18,
-                    color: Color.fromARGB(255, 255, 255, 255), // Warna hitam untuk teks
                   ),
                 ),
               ),
@@ -152,4 +128,3 @@ class AccountPage extends StatelessWidget {
     );
   }
 }
-
