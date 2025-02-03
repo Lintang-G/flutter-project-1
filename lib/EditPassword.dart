@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test3/accountmanagement.dart';
 import 'main.dart';
-import 'login.dart';
 
-class Signup extends StatelessWidget {
-  const Signup({super.key});
+class editPw extends StatelessWidget {
+  const editPw({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +13,8 @@ class Signup extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Sleep Stay',
-          style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w700),
-        ),
-        automaticallyImplyLeading: false,
+        title: const Text('Ubah password'),
       ),
       body: Center(
         child: Padding(
@@ -30,59 +23,27 @@ class Signup extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Center(
-                child: const Text(
-                  'Signup',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                ),
-              ),
               const SizedBox(height: 40),
-
-              // First Name
-              TextField(
-                controller: firstNameController,
-                decoration: InputDecoration(
-                  labelText: 'First Name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  prefixIcon: const Icon(Icons.person),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // Last Name
-              TextField(
-                controller: lastNameController,
-                decoration: InputDecoration(
-                  labelText: 'Last Name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  prefixIcon: const Icon(Icons.person_outline),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // Email Address
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email Address',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  prefixIcon: const Icon(Icons.email),
-                ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 20),
 
               // Password
               TextField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Password lama',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  prefixIcon: const Icon(Icons.lock),
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 30),
+
+              // Password
+              TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password baru',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -97,7 +58,7 @@ class Signup extends StatelessWidget {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {
-                      Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Main()),
                     );
@@ -110,7 +71,7 @@ class Signup extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'Signup',
+                    'Continue',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -118,20 +79,6 @@ class Signup extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // Back to Login
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyHomePage(title: 'Login Page')),
-                    );
-                  },
-                  child: const Text('Already have an account? Login'),
-                ),
-              ),
-
             ],
           ),
         ),

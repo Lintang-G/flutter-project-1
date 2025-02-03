@@ -3,6 +3,9 @@ import 'main.dart';
 import 'signup.dart';
 import 'accountdetail.dart';
 import 'country.dart';
+import 'favorite.dart';
+import 'EditPassword.dart';
+import 'notification.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -28,6 +31,7 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
@@ -77,14 +81,14 @@ class MenuScreen extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Wishlist'),
-            onTap: () => navigateTo(context, Main()),
+            title: Text('Favorit'),
+            onTap: () => navigateTo(context, Favorite()),
           ),
           ListTile(
             leading: Icon(Icons.mail),
             trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Kotak masuk'),
-            onTap: () => navigateTo(context, Main()),
+            title: Text('Notifikasi'),
+            onTap: () => navigateTo(context, NotifikasiScreen()),
           ),
           ListTile(
             leading: Icon(Icons.card_giftcard),
@@ -122,7 +126,7 @@ class MenuScreen extends StatelessWidget {
             leading: Icon(Icons.lock),
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Ganti password'),
-            onTap: () => navigateTo(context, Main()),
+            onTap: () => navigateTo(context, editPw()),
           ),
           Divider(),
           Text('Support', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),

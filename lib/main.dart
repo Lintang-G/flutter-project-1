@@ -43,7 +43,10 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sleep Stay'),
+        title: const Text(
+          'Sleep Stay',
+          style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w700),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: _selectedIndex == 0
@@ -59,20 +62,20 @@ class _MainState extends State<Main> {
                   'assets/image1.jpeg',
                   fit: BoxFit.cover,
                   width: double.infinity,
-                  height: 180,
+                  height: 200,
                 ),
               ),
               const SizedBox(height: 16),
               const Text(
                 'Book hotels, apartments, and villas with ease.',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 25,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 5),
 
               const SizedBox(height: 16),
               Card(
