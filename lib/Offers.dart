@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'saved.dart';
+import 'hoteldescription.dart';
 
 class Offers extends StatefulWidget {
   const Offers({super.key});
@@ -15,25 +16,25 @@ class _OffersState extends State<Offers> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Main()), // Navigate to MainPage
+          MaterialPageRoute(builder: (context) => Main()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SavedPage()), // Navigate to SavedHotelsPage
+          MaterialPageRoute(builder: (context) => SavedPage()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Main()), // Navigate to HelpPage
+          MaterialPageRoute(builder: (context) => Main()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Main()), // Navigate to ProfilePage
+          MaterialPageRoute(builder: (context) => Main()),
         );
         break;
     }
@@ -43,43 +44,68 @@ class _OffersState extends State<Offers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Offers'),
+        title: const Text('Offers'),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: 2,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 300,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.pink.shade50,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HotelDesc()),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'City, Country',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Hotel Image Placeholder
+                    Container(
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text("gambar", style: TextStyle(color: Colors.black45)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.star, color: Colors.amber),
+                              const SizedBox(width: 4),
+                              Text("3.9/5", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            "SleepStay Hotel.......",
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Text("Cilandak, Jakarta Selatan | 1 km from Cafe"),
+                          const SizedBox(height: 8),
+                          Text("Rp155.999,00/Malam", style: TextStyle(fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  "50",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
+              ),
             ),
           );
         },
@@ -89,8 +115,6 @@ class _OffersState extends State<Offers> {
         backgroundColor: Colors.pink[100],
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
