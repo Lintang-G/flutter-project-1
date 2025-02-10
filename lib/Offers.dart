@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'saved.dart';
+import 'accountmanagement.dart';
+import 'help.dart';
 import 'hoteldescription.dart';
 
 class Offers extends StatefulWidget {
-  const Offers({super.key});
+  const Offers({super.key, required String destination});
 
   @override
   _OffersState createState() => _OffersState();
@@ -28,13 +30,13 @@ class _OffersState extends State<Offers> {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Main()),
+          MaterialPageRoute(builder: (context) => Help()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Main()),
+          MaterialPageRoute(builder: (context) => MenuScreen()),
         );
         break;
     }
@@ -45,9 +47,18 @@ class _OffersState extends State<Offers> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Offers'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Main()),
+            );
+          },
+        ),
       ),
       body: ListView.builder(
-        itemCount: 2,
+        itemCount: 4,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
@@ -67,17 +78,16 @@ class _OffersState extends State<Offers> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Hotel Image Placeholder
-                    Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16.0), // Adjust the value as needed
+                        topRight: Radius.circular(16.0),
                       ),
-                      child: Center(
-                        child: Text("gambar", style: TextStyle(color: Colors.black45)),
+                      child: Image.asset(
+                        'assets/intercontinental.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: 200,
                       ),
                     ),
                     Padding(
@@ -115,6 +125,8 @@ class _OffersState extends State<Offers> {
         backgroundColor: Colors.pink[100],
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.search),

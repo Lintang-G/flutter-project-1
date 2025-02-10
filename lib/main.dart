@@ -28,11 +28,6 @@ class _MainState extends State<Main> {
   }
 
   final List<Map<String, String>> _carouselItems = [
-    //{'title': 'Terdekat', 'icon: Icon(Icons.chat_bubble_outline)'},
-    {'title': 'Bali', 'image': 'assets/bali.jpeg'},
-    {'title': 'Medan', 'image': 'assets/medan.jpeg'},
-    {'title': 'Jakarta', 'image': 'assets/jakarta.jpg'},
-    {'title': 'Surabaya', 'image': 'assets/surabaya.jpeg'},
     {'title': 'Bali', 'image': 'assets/bali.jpeg'},
     {'title': 'Medan', 'image': 'assets/medan.jpeg'},
     {'title': 'Jakarta', 'image': 'assets/jakarta.jpg'},
@@ -75,8 +70,6 @@ class _MainState extends State<Main> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 5),
-
               const SizedBox(height: 16),
               Card(
                 elevation: 0,
@@ -132,7 +125,7 @@ class _MainState extends State<Main> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Offers()),
+                              MaterialPageRoute(builder: (context) => const Offers(destination: '',)),
                             );
                           },
                           style: FilledButton.styleFrom(
@@ -155,7 +148,6 @@ class _MainState extends State<Main> {
                   ),
                 ),
               ),
-              // Carousel Widget
               const SizedBox(height: 24),
               SizedBox(
                 height: 120,
@@ -164,25 +156,37 @@ class _MainState extends State<Main> {
                   itemCount: _carouselItems.length,
                   itemBuilder: (context, index) {
                     final item = _carouselItems[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.asset(
-                              item['image']!,
-                              height: 80,
-                              width: 80,
-                              fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Offers(
+                              destination: item['title']!,
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            item['title']!,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                item['image']!,
+                                height: 80,
+                                width: 80,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              item['title']!,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

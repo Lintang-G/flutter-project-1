@@ -13,7 +13,7 @@ class HotelDesc extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Offers()),
+              MaterialPageRoute(builder: (context) => Offers(destination: '',)),
             );
           },
         ),
@@ -22,12 +22,11 @@ class HotelDesc extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Single Image Header
-            Image.network(
-              "https://via.placeholder.com/600",
-              height: 200,
-              width: MediaQuery.of(context).size.width,
+            Image.asset(
+              'assets/intercontinental.jpg',
               fit: BoxFit.cover,
+              width: double.infinity,
+              height: 200,
             ),
             // Hotel Info
             Padding(
@@ -141,8 +140,12 @@ class HotelDesc extends StatelessWidget {
 
   Widget _buildFacilityChip(String facility) {
     return Chip(
-      label: Text(facility),
-      backgroundColor: Colors.green[100],
+      label: Text(
+        facility,
+        style: TextStyle(color: Colors.white), // Set the font color
+      ),
+      backgroundColor: Colors.blueAccent,
+      side: BorderSide.none,
     );
   }
 

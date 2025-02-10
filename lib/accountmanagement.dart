@@ -6,6 +6,7 @@ import 'country.dart';
 import 'favorite.dart';
 import 'EditPassword.dart';
 import 'notification.dart';
+import 'daftar.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -63,11 +64,11 @@ class MenuScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Account user',
+                        'Azisgantengbanget',
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Text(
-                        'user@gmail.com',
+                        'AzisMunandar2008@gmail.com',
                         style: TextStyle(color: Colors.white60, fontSize: 14),
                       ),
                     ],
@@ -148,7 +149,7 @@ class MenuScreen extends StatelessWidget {
             leading: Icon(Icons.upload_file),
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Unggah properti Anda'),
-            onTap: () => navigateTo(context, Main()),
+            onTap: () => navigateTo(context, ClientIdPage()),
           ),
           ListTile(
             leading: Icon(Icons.group_add),
