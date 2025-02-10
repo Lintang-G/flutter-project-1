@@ -23,12 +23,13 @@ class HotelDesc extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Single Image Header
-            Image.network(
-              "https://via.placeholder.com/600",
+            Image.asset(
+              'assets/intercontinental.jpg',
               height: 200,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
+
             // Hotel Info
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -37,7 +38,7 @@ class HotelDesc extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.hotel, color: Colors.green),
+                      Icon(Icons.hotel, color: Colors.blueAccent),
                       SizedBox(width: 8),
                       Text(
                         "Hotel - 3.5/5 (1990 ulasan)",
@@ -52,6 +53,7 @@ class HotelDesc extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text("Medan Amplas, Medan"),
+                  Text("Jl.setiabudi 1356"),
                   Divider(),
                   Row(
                     children: [
@@ -142,7 +144,11 @@ class HotelDesc extends StatelessWidget {
   Widget _buildFacilityChip(String facility) {
     return Chip(
       label: Text(facility),
-      backgroundColor: Colors.green[100],
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      elevation: 0, // Remove shadow (border-like effect)
     );
   }
 

@@ -64,6 +64,8 @@ flutter:
     - assets/bali.jpeg
     - assets/surabaya.jpeg
     - assets/jakarta.jpg
+    - assets/intercontinental.jpg
+    - assets/help.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

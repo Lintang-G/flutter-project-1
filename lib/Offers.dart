@@ -45,7 +45,18 @@ class _OffersState extends State<Offers> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Offers'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Main()),
+                  (route) => false,
+            );
+          },
+        ),
       ),
+
       body: ListView.builder(
         itemCount: 2,
         itemBuilder: (context, index) {
@@ -66,18 +77,23 @@ class _OffersState extends State<Offers> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Hotel Image Placeholder
                     Container(
                       height: 200,
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16),
                         ),
                       ),
-                      child: Center(
-                        child: Text("gambar", style: TextStyle(color: Colors.black45)),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                        child: Image.asset(
+                          'assets/intercontinental.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Padding(
@@ -115,6 +131,8 @@ class _OffersState extends State<Offers> {
         backgroundColor: Colors.pink[100],
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.search),

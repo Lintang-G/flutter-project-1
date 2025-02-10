@@ -14,7 +14,7 @@ class Help extends StatelessWidget {
             const Spacer(),
             // Image Icon
             Image.asset(
-              'assets/bantuan.jpg',
+              'assets/help.png',
               width: 150,
               height: 150,
               fit: BoxFit.contain,
