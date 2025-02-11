@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
 import 'main.dart';
+import 'admin_dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +34,37 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  // Mock user data for demonstration
+  final Map<String, String> mockUsers = {
+    'admin@example.com': 'admin',
+    'user@example.com': 'user',
+  };
+
+  void handleLogin() {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    if (mockUsers.containsKey(email)) {
+      String role = mockUsers[email]!;
+
+      if (role == 'admin') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AdminDashboard()),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Main()),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Invalid email or password")),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 40),
-              //email
+              // Email field
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  labelText: 'Email Address',
+                  labelText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -71,11 +103,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 20),
-              //password
+              // Password field
               TextField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Sandi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -88,12 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Main()),
-                    );
-                  },
+                  onPressed: handleLogin,
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     padding: const EdgeInsets.symmetric(vertical: 16),
@@ -118,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       MaterialPageRoute(builder: (context) => Signup()),
                     );
                   },
-                  child: const Text("Don't have an account? Signup"),
+                  child: const Text("Belum punya akun? Daftar"),
                 ),
               )
             ],

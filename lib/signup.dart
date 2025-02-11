@@ -32,7 +32,7 @@ class Signup extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: const Text(
-                  'Signup',
+                  'Daftar',
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -42,7 +42,7 @@ class Signup extends StatelessWidget {
               TextField(
                 controller: firstNameController,
                 decoration: InputDecoration(
-                  labelText: 'First Name',
+                  labelText: 'Nama depan',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -55,7 +55,7 @@ class Signup extends StatelessWidget {
               TextField(
                 controller: lastNameController,
                 decoration: InputDecoration(
-                  labelText: 'Last Name',
+                  labelText: 'Nama belakang',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -68,7 +68,7 @@ class Signup extends StatelessWidget {
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  labelText: 'Email Address',
+                  labelText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -82,7 +82,7 @@ class Signup extends StatelessWidget {
               TextField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Sandi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -110,7 +110,7 @@ class Signup extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'Signup',
+                    'Daftar',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -128,7 +128,7 @@ class Signup extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => MyHomePage(title: 'Login Page')),
                     );
                   },
-                  child: const Text('Already have an account? Login'),
+                  child: const Text('Sudah punya akun? Login'),
                 ),
               ),
 

@@ -13,7 +13,7 @@ class HotelDesc extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Offers()),
+              MaterialPageRoute(builder: (context) => Offers(destination: AutofillHints.addressCity)),
             );
           },
         ),

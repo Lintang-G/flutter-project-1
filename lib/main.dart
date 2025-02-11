@@ -62,7 +62,7 @@ class _MainState extends State<Main> {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Book hotels, apartments, and villas with ease.',
+                'Pesan hotel, apartemen dan vila dengan mudah.',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w600,
@@ -83,7 +83,7 @@ class _MainState extends State<Main> {
                     children: [
                       TextField(
                         decoration: InputDecoration(
-                          labelText: 'Destination',
+                          labelText: 'Destinasi',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -96,7 +96,7 @@ class _MainState extends State<Main> {
                           Expanded(
                             child: TextField(
                               decoration: InputDecoration(
-                                labelText: 'Check-in Date',
+                                labelText: 'tanggal masuk',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -108,7 +108,7 @@ class _MainState extends State<Main> {
                           Expanded(
                             child: TextField(
                               decoration: InputDecoration(
-                                labelText: 'Check-out Date',
+                                labelText: 'tanggal keluar',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -136,7 +136,7 @@ class _MainState extends State<Main> {
                             ),
                           ),
                           child: const Text(
-                            'Search',
+                            'Cari',
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,
