@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'booking.dart';
 import 'Offers.dart';
 
 class HotelDesc extends StatelessWidget {
@@ -22,15 +23,12 @@ class HotelDesc extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Single Image Header
             Image.asset(
               'assets/intercontinental.jpg',
               height: 200,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
-
-            // Hotel Info
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -55,27 +53,7 @@ class HotelDesc extends StatelessWidget {
                   Text("Medan Amplas, Medan"),
                   Text("Jl.setiabudi 1356"),
                   Divider(),
-                  Row(
-                    children: [
-                      Icon(Icons.star, color: Colors.amber),
-                      SizedBox(width: 8),
-                      Text("3.5/5 (Baik) - Rating 2 bulan terakhir: 3.3")
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    children: [
-                      _buildReviewChip("Iwin Santoso", 3.5),
-                      SizedBox(width: 8),
-                      _buildReviewChip("Azis Munandar", 4.0),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  _buildDateSelector(),
-                  SizedBox(height: 16),
-                  _buildFacilitiesSection(),
-                  SizedBox(height: 16),
-                  _buildRoomOptions(),
+                  _buildRoomOptions(context), // ✅ Pass context
                   SizedBox(height: 16),
                   _buildPolicySection(),
                 ],
@@ -87,84 +65,19 @@ class HotelDesc extends StatelessWidget {
     );
   }
 
-  Widget _buildReviewChip(String reviewer, double rating) {
-    return Chip(
-      label: Text("$reviewer - $rating"),
-      backgroundColor: Colors.blue[100],
-    );
-  }
-
-  Widget _buildDateSelector() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _buildDateCard("Check-in", "St. 1 FEB 2025"),
-        _buildDateCard("Check-out", "St. 5 FEB 2025"),
-      ],
-    );
-  }
-
-  Widget _buildDateCard(String title, String date) {
-    return Expanded(
-      child: Card(
-        elevation: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Text(title, style: TextStyle(color: Colors.grey)),
-              SizedBox(height: 8),
-              Text(date, style: TextStyle(fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFacilitiesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Fasilitas", style: TextStyle(fontWeight: FontWeight.bold)),
-        SizedBox(height: 8),
-        Wrap(
-          spacing: 8,
-          children: [
-            _buildFacilityChip("Alat Mandi Gratis"),
-            _buildFacilityChip("Sofa"),
-            _buildFacilityChip("Washroom Shower"),
-            _buildFacilityChip("Resepsionis"),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _buildFacilityChip(String facility) {
-    return Chip(
-      label: Text(facility),
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      elevation: 0, // Remove shadow (border-like effect)
-    );
-  }
-
-  Widget _buildRoomOptions() {
+  Widget _buildRoomOptions(BuildContext context) { // ✅ Add context parameter
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Jenis kamar yang direkomendasikan", style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 8),
-        _buildRoomCard("Standard Room", 189000),
-        _buildRoomCard("Deluxe Room", 289000),
+        _buildRoomCard(context, "Standard Room", 189000), // ✅ Pass context
+        _buildRoomCard(context, "Deluxe Room", 289000),   // ✅ Pass context
       ],
     );
   }
 
-  Widget _buildRoomCard(String roomName, int price) {
+  Widget _buildRoomCard(BuildContext context, String roomName, int price) {
     return Card(
       elevation: 3,
       child: Padding(
@@ -177,13 +90,18 @@ class HotelDesc extends StatelessWidget {
               children: [
                 Text(roomName, style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 4),
-                Text("Rp $price")
+                Text("Rp $price"),
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context, // ✅ Use the context parameter
+                  MaterialPageRoute(builder: (context) => BookingPage()),
+                );
+              },
               child: Text("Pesan Sekarang"),
-            )
+            ),
           ],
         ),
       ),
