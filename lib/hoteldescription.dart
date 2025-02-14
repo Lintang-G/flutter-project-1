@@ -39,19 +39,19 @@ class HotelDesc extends StatelessWidget {
                       Icon(Icons.hotel, color: Colors.blueAccent),
                       SizedBox(width: 8),
                       Text(
-                        "Hotel - 3.5/5 (1990 ulasan)",
+                        "Hotel - 4.8/5",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "Nama Hotel",
+                    "Intercontinental Bali Resort",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 4),
-                  Text("Medan Amplas, Medan"),
-                  Text("Jl.setiabudi 1356"),
+                  Text("Jimbaran, South Kuta, Badung Regency, Bali"),
+                  Text("Uluwatu St No.45 80361"),
                   Divider(),
                   _buildRoomOptions(context), // ✅ Pass context
                   SizedBox(height: 16),
@@ -65,48 +65,84 @@ class HotelDesc extends StatelessWidget {
     );
   }
 
-  Widget _buildRoomOptions(BuildContext context) { // ✅ Add context parameter
+  Widget _buildRoomOptions(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Jenis kamar yang direkomendasikan", style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 8),
-        _buildRoomCard(context, "Standard Room", 189000), // ✅ Pass context
-        _buildRoomCard(context, "Deluxe Room", 289000),   // ✅ Pass context
+        _buildRoomCard(context, "Standard Room", "assets/kamar1.jpg", "1", 4500000),
+        _buildRoomCard(context, "Deluxe Room", "assets/kamar2.jpg", "2", 5800000),
       ],
     );
   }
 
-  Widget _buildRoomCard(BuildContext context, String roomName, int price) {
+  Widget _buildRoomCard(BuildContext context, String roomName, String imagePath, String bedType, int price) {
     return Card(
       elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                Text(roomName, style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(height: 4),
-                Text("Rp $price"),
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      image: AssetImage(imagePath),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(roomName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.bed, size: 16, color: Colors.black54),
+                        SizedBox(width: 4),
+                        Text(bedType, style: TextStyle(fontSize: 14, color: Colors.black54)),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context, // ✅ Use the context parameter
-                  MaterialPageRoute(builder: (context) => BookingPage()),
-                );
-              },
-              child: Text("Pesan Sekarang"),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Rp $price", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BookingPage()),
+                    );
+                  },
+                  child: Text("Pesan Sekarang"),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
 
   Widget _buildPolicySection() {
     return Column(

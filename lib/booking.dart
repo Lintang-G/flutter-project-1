@@ -24,7 +24,6 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE0F7FA),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -39,62 +38,16 @@ class _BookingPageState extends State<BookingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Sleep Stay Hotel Permatasari",
+              "Intercontinental Bali Resort",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const Text("Jln. Jamin Ginting, Gg Semangka II, Medan, Indonesia, 12345"),
+            const Text("Uluwatu St No.45, Jimbaran, South Kuta, Badung Regency, Bali 80361"),
             const SizedBox(height: 10),
             const Text(
               "Jumat, 1 Januari 2025 - Sabtu, 01 Februari 2025",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-
-            // Input Data Pengguna
-            const Text("Alamat Email", style: TextStyle(fontWeight: FontWeight.bold)),
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                hintText: "Pengguna@gmail.com",
-                border: UnderlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: firstNameController,
-                    decoration: const InputDecoration(
-                      labelText: "Nama Depan",
-                      border: UnderlineInputBorder(),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: TextField(
-                    controller: lastNameController,
-                    decoration: const InputDecoration(
-                      labelText: "Nama Belakang",
-                      border: UnderlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-
-            const Text("Telepon", style: TextStyle(fontWeight: FontWeight.bold)),
-            TextField(
-              controller: phoneController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-              ),
-              keyboardType: TextInputType.phone,
-            ),
-            const SizedBox(height: 10),
 
             // Pemilihan Metode Pembayaran
             const Text("Metode Pembayaran", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -231,7 +184,7 @@ class _BookingPageState extends State<BookingPage> {
                 }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isAgreed ? Colors.red : Colors.grey,
+                  backgroundColor: isAgreed ? Colors.blueAccent : Colors.grey, // Changed from red to blueAccent
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: const Text(

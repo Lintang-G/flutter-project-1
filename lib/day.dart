@@ -6,7 +6,6 @@ class DaySelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE0F7FA),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

@@ -66,6 +66,12 @@ flutter:
     - assets/jakarta.jpg
     - assets/intercontinental.jpg
     - assets/help.png
+    - assets/kamar1.jpg
+    - assets/kamar2.jpg
+    - assets/HI.jpg
+    - assets/aryaduta.jpg
+    - assets/HIjakarta.jpg
+    - assets/pullman.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
