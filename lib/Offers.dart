@@ -6,35 +6,136 @@ import 'help.dart';
 import 'hoteldescription.dart';
 
 class Offers extends StatefulWidget {
-  const Offers({super.key, required String destination});
+  final String destination;
+
+  const Offers({super.key, required this.destination});
 
   @override
   _OffersState createState() => _OffersState();
 }
 
 class _OffersState extends State<Offers> {
+  final List<Map<String, dynamic>> _hotels = [
+    {
+      "name": "Intercontinental Bali Resort",
+      "image": "assets/intercontinental.jpg",
+      "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
+      "rating": "4.8/5",
+      "price": 4000000,
+      "location": "Bali"
+    },
+    {
+      "name": "Raffles Bali",
+      "image": "assets/76947569_XL.jpg",
+      "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
+      "rating": "4.9/5",
+      "price": 7000000,
+      "location": "Bali"
+    },
+    {
+      "name": "Padma Resort Ubud",
+      "image": "assets/images.jpeg",
+      "address": "Padma Resort Ubud Banjar Carik, Desa, Puhu,",
+      "rating": "4.8/5",
+      "price": 3500000,
+      "location": "Bali"
+    },
+    {
+      "name": "Hotel Indonesia",
+      "image": "assets/HIjakarta.jpg",
+      "address": "Jl. M.H. Thamrin No.1, Menteng, Kota Jakarta Pusat",
+      "rating": "4.7/5",
+      "price": 3800000,
+      "location": "Jakarta"
+    },
+    {
+      "name": "Four Seasons jakarta",
+      "image": "assets/download.jpeg",
+      "address": "Jl. Gatot Subroto No.18, Kuningan Bar. Kota Jakarta Pusat",
+      "rating": "4.8/5",
+      "price": 3380000,
+      "location": "Jakarta"
+    },
+    {
+      "name": "Grand Gyatt Jakarta",
+      "image": "assets/images1.jpeg",
+      "address": " Jl. M.H. Thamrin No.Kav. 28-30, Gondangdia, Kota Jakarta Pusat",
+      "rating": "4.7/5",
+      "price": 3000000,
+      "location": "Jakarta"
+    },
+    {
+      "name": "Aryaduta",
+      "image": "assets/aryaduta.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
+      "rating": "4.4/5",
+      "price": 2560000,
+      "location": "Medan"
+    },
+    {
+      "name": "JW mariott",
+      "image": "assets/images2.jpeg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
+      "rating": "4.4/5",
+      "price": 300000,
+      "location": "Medan"
+    },
+    {
+      "name": "Pullman",
+      "image": "assets/pullman.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
+      "rating": "4.4/5",
+      "price": 2000000,
+      "location": "Medan"
+    },
+    {
+      "name": "JW Marriott",
+      "image": "assets/HI.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
+      "rating": "4.0/5",
+      "price": 500000,
+      "location": "Surabaya"
+    },
+    {
+      "name": "JW Marriott",
+      "image": "assets/HI.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
+      "rating": "4.0/5",
+      "price": 500000,
+      "location": "Surabaya"
+    },
+    {
+      "name": "JW Marriott",
+      "image": "assets/HI.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
+      "rating": "4.0/5",
+      "price": 500000,
+      "location": "Surabaya"
+    },
+  ];
+
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Main()),
+          MaterialPageRoute(builder: (context) => const Main()),
         );
         break;
       case 1:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => SavedPage()),
         );
         break;
       case 2:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Help()),
+          MaterialPageRoute(builder: (context) => const Help()),
         );
         break;
       case 3:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => MenuScreen()),
         );
@@ -44,28 +145,38 @@ class _OffersState extends State<Offers> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> filteredHotels = _hotels
+        .where((hotel) => widget.destination.isEmpty || hotel["location"] == widget.destination)
+        .toList();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Offers'),
+        title: Text('Offers in ${widget.destination.isEmpty ? "All Locations" : widget.destination}'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Main()),
-            );
+            Navigator.pop(context);
           },
         ),
       ),
-      body: ListView(
-        children: [
-          _buildHotelCard(context, "Intercontinental  Bali Resort", "assets/intercontinental.jpg", "Uluwatu St No.45, Jimbaran, Kuta selatan", "4.8/5", 4000000),
-          _buildHotelCard(context, "Hotel Indonesia", "assets/HIjakarta.jpg", "Jl. M.H. Thamrin No.1, Menteng, Kota Jakarta Pusat", "4.7/5", 3800000),
-          _buildHotelCard(context, "Pullman", "assets/pullman.jpg", "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.", "4.4/5", 2500000),
-          _buildHotelCard(context, "JW Mariot", "assets/HI.jpg", "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.", "4.0/5", 500000),
-        ],
+      body: filteredHotels.isEmpty
+          ? const Center(child: Text("No hotels available for this destination."))
+          : ListView.builder(
+        itemCount: filteredHotels.length,
+        itemBuilder: (context, index) {
+          final hotel = filteredHotels[index];
+          return _buildHotelCard(
+            context,
+            hotel["name"],
+            hotel["image"],
+            hotel["address"],
+            hotel["rating"],
+            hotel["price"],
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
         onTap: _onItemTapped,
         backgroundColor: Colors.pink[100],
         selectedItemColor: Colors.black,
@@ -94,7 +205,14 @@ class _OffersState extends State<Offers> {
     );
   }
 
-  Widget _buildHotelCard(BuildContext context, String hotelName, String imagePath, String address, String rating, int price) {
+  Widget _buildHotelCard(
+      BuildContext context,
+      String hotelName,
+      String imagePath,
+      String address,
+      String rating,
+      int price,
+      ) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -113,7 +231,7 @@ class _OffersState extends State<Offers> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(16.0),
                   topRight: Radius.circular(16.0),
                 ),
@@ -131,19 +249,19 @@ class _OffersState extends State<Offers> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.star, color: Colors.amber),
+                        const Icon(Icons.star, color: Colors.amber),
                         const SizedBox(width: 4),
-                        Text(rating, style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(rating, style: const TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
                     const SizedBox(height: 4),
                     Text(
                       hotelName,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     Text(address),
                     const SizedBox(height: 8),
-                    Text("Rp$price,00/Malam", style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("Rp$price,00/Malam", style: const TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),

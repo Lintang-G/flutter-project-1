@@ -34,6 +34,29 @@ class _MainState extends State<Main> {
     {'title': 'Surabaya', 'image': 'assets/surabaya.jpeg'},
   ];
 
+  final TextEditingController _destinationController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  List<String> _suggestions = [];
+  List<String> _allDestinations = ['Bali', 'Medan', 'Jakarta', 'Surabaya'];
+
+  bool _showDropdown = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {
+        _showDropdown = _focusNode.hasFocus && _suggestions.isNotEmpty;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,14 +104,52 @@ class _MainState extends State<Main> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Destinasi',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                      Column(
+                        children: [
+                          TextField(
+                            controller: _destinationController,
+                            focusNode: _focusNode,
+                            decoration: InputDecoration(
+                              labelText: 'Destinasi',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              prefixIcon: const Icon(Icons.location_on),
+                            ),
+                            onChanged: (text) {
+                              setState(() {
+                                _suggestions = _allDestinations
+                                    .where((destination) =>
+                                    destination.toLowerCase().contains(text.toLowerCase()))
+                                    .toList();
+                                _showDropdown = _focusNode.hasFocus && _suggestions.isNotEmpty;
+                              });
+                            },
                           ),
-                          prefixIcon: Icon(Icons.location_on),
-                        ),
+                          if (_showDropdown)
+                            Container(
+                              margin: const EdgeInsets.only(top: 8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.white,
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Column(
+                                children: _suggestions.map((String suggestion) {
+                                  return ListTile(
+                                    title: Text(suggestion),
+                                    onTap: () {
+                                      _destinationController.text = suggestion;
+                                      setState(() {
+                                        _suggestions.clear();
+                                        _showDropdown = false;
+                                      });
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                        ],
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -96,11 +157,11 @@ class _MainState extends State<Main> {
                           Expanded(
                             child: TextField(
                               decoration: InputDecoration(
-                                labelText: 'tanggal masuk',
+                                labelText: 'Tanggal masuk',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                prefixIcon: Icon(Icons.calendar_today),
+                                prefixIcon: const Icon(Icons.calendar_today),
                               ),
                             ),
                           ),
@@ -108,42 +169,42 @@ class _MainState extends State<Main> {
                           Expanded(
                             child: TextField(
                               decoration: InputDecoration(
-                                labelText: 'tanggal keluar',
+                                labelText: 'Tanggal keluar',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                prefixIcon: Icon(Icons.calendar_today),
+                                prefixIcon: const Icon(Icons.calendar_today),
                               ),
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 16),
-                      SizedBox(
-                        width: double.infinity,
-                        child: FilledButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const Offers(destination: '',)),
-                            );
-                          },
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Colors.blueAccent,
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                    SizedBox(
+                    width: 339, // Adjust the width as needed
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Offers(destination: _destinationController.text),
                             ),
-                          ),
-                          child: const Text(
-                            'Cari',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
+                          );
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.blueAccent,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
+                        child: const Text(
+                          'Cari',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
+                    ),
+
                     ],
                   ),
                 ),
@@ -156,37 +217,25 @@ class _MainState extends State<Main> {
                   itemCount: _carouselItems.length,
                   itemBuilder: (context, index) {
                     final item = _carouselItems[index];
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Offers(
-                              destination: item['title']!,
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              item['image']!,
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                item['image']!,
-                                height: 80,
-                                width: 80,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              item['title']!,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
+                          const SizedBox(height: 8),
+                          Text(
+                            item['title']!,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -206,22 +255,10 @@ class _MainState extends State<Main> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
-            label: 'Save',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            label: 'Help',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark_border), label: 'Save'),
+          BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline), label: 'Help'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
       ),
     );

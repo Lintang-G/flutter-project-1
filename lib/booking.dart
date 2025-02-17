@@ -80,6 +80,18 @@ class _BookingPageState extends State<BookingPage> {
 
             const SizedBox(height: 20),
 
+            // Input Telepon
+            const Text("Telepon", style: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: phoneController,
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+              ),
+              keyboardType: TextInputType.phone,
+            ),
+
+            const SizedBox(height: 20),
+
             // Pemilihan Hari Menginap
             const Text("Jumlah Malam", style: TextStyle(fontWeight: FontWeight.bold)),
             GestureDetector(
@@ -184,7 +196,7 @@ class _BookingPageState extends State<BookingPage> {
                 }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isAgreed ? Colors.blueAccent : Colors.grey, // Changed from red to blueAccent
+                  backgroundColor: isAgreed ? Colors.blueAccent : Colors.grey,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: const Text(

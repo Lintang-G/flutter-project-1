@@ -64,11 +64,11 @@ class MenuScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Azisgantengbanget',
+                        'User 1',
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Text(
-                        'AzisMunandar2008@gmail.com',
+                        'user@gmail.com',
                         style: TextStyle(color: Colors.white60, fontSize: 14),
                       ),
                     ],
@@ -90,18 +90,6 @@ class MenuScreen extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Notifikasi'),
             onTap: () => navigateTo(context, NotifikasiScreen()),
-          ),
-          ListTile(
-            leading: Icon(Icons.card_giftcard),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Hadiah saya'),
-            onTap: () => navigateTo(context, Main()),
-          ),
-          ListTile(
-            leading: Icon(Icons.business),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Daftarkan Akun Bisnis Anda'),
-            onTap: () => navigateTo(context, Main()),
           ),
           Divider(),
           Text('Pengaturan', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
@@ -150,12 +138,6 @@ class MenuScreen extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Unggah properti Anda'),
             onTap: () => navigateTo(context, ClientIdPage()),
-          ),
-          ListTile(
-            leading: Icon(Icons.group_add),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Ajak dan Dapatkan'),
-            onTap: () => navigateTo(context, Main()),
           ),
           Divider(),
           Text('Informasi', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),

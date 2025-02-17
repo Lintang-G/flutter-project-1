@@ -36,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Mock user data for demonstration
   final Map<String, String> mockUsers = {
-    'admin@example.com': 'admin',
-    'user@example.com': 'user',
+    'admin@gmail.com': 'admin',
+    'user@gmail.com': 'user',
   };
 
   void handleLogin() {
