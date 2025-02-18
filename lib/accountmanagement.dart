@@ -1,20 +1,62 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'signup.dart';
 import 'accountdetail.dart';
 import 'country.dart';
 import 'favorite.dart';
 import 'EditPassword.dart';
 import 'notification.dart';
+import 'saved.dart';
+import 'help.dart';
 import 'daftar.dart';
 
-class MyApp extends StatelessWidget {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    Center(child: Text('Search Page')),
+    SavedPage(),
+    Help(),
+    MenuScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Navigation Menu',
-      home: MenuScreen(),
+      home: Scaffold(
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          backgroundColor: Colors.pink[100],
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+            BottomNavigationBarItem(icon: Icon(Icons.bookmark_border), label: 'Save'),
+            BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline), label: 'Help'),
+            BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -22,9 +64,7 @@ class MyApp extends StatelessWidget {
 void navigateTo(BuildContext context, Widget page) {
   Navigator.push(
     context,
-    MaterialPageRoute(
-      builder: (context) => page,
-    ),
+    MaterialPageRoute(builder: (context) => page),
   );
 }
 
@@ -38,7 +78,7 @@ class MenuScreen extends StatelessWidget {
         children: [
           SizedBox(height: 10),
           GestureDetector(
-            onTap: () => navigateTo(context, detail()),
+            onTap: () => navigateTo(context, detail()), // Make sure this widget exists
             child: Container(
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -100,22 +140,10 @@ class MenuScreen extends StatelessWidget {
             onTap: () => navigateTo(context, NegaraPage()),
           ),
           ListTile(
-            leading: Icon(Icons.money),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Mata uang'),
-            onTap: () => navigateTo(context, Main()),
-          ),
-          ListTile(
-            leading: Icon(Icons.language),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Bahasa'),
-            onTap: () => navigateTo(context, Main()),
-          ),
-          ListTile(
             leading: Icon(Icons.lock),
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Ganti password'),
-            onTap: () => navigateTo(context, editPw()),
+            onTap: () => navigateTo(context, editPw()), // Fix this widget
           ),
           Divider(),
           Text('Support', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
@@ -123,13 +151,7 @@ class MenuScreen extends StatelessWidget {
             leading: Icon(Icons.contact_support),
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Hubungi kami'),
-            onTap: () => navigateTo(context, Main()),
-          ),
-          ListTile(
-            leading: Icon(Icons.question_answer),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('FAQ'),
-            onTap: () => navigateTo(context, Main()),
+            onTap: () => navigateTo(context, Help()),
           ),
           Divider(),
           Text('Dapatkan Uang Lebih dari Sleep Stay', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
@@ -137,7 +159,7 @@ class MenuScreen extends StatelessWidget {
             leading: Icon(Icons.upload_file),
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Unggah properti Anda'),
-            onTap: () => navigateTo(context, ClientIdPage()),
+            onTap: () => navigateTo(context, ClientIdPage()), // Ensure this widget exists
           ),
           Divider(),
           Text('Informasi', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
@@ -145,19 +167,7 @@ class MenuScreen extends StatelessWidget {
             leading: Icon(Icons.info),
             trailing: Icon(Icons.arrow_forward_ios),
             title: Text('Tentang Sleep Stay'),
-            onTap: () => navigateTo(context, Main()),
-          ),
-          ListTile(
-            leading: Icon(Icons.privacy_tip),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Kebijakan privasi'),
-            onTap: () => navigateTo(context, Main()),
-          ),
-          ListTile(
-            leading: Icon(Icons.rule),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text('Syarat & Ketentuan'),
-            onTap: () => navigateTo(context, Main()),
+            onTap: () => navigateTo(context, Help()),
           ),
           Divider(),
           // Keluar Section

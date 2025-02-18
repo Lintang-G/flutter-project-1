@@ -41,16 +41,7 @@ class ClientIdPage extends StatelessWidget {
             // Logo dan nama aplikasi
             Column(
               children: [
-                Image.asset('assets/logo.png',width: 150,height: 150,),
-                const SizedBox(height: 8),
-                const Text(
-                  'SLEEP STAY',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                ),
+                Image.asset('assets/logo.png',width: 250,height: 250,),
               ],
             ),
             const Spacer(),
