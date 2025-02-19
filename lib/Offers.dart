@@ -4,6 +4,7 @@ import 'saved.dart';
 import 'accountmanagement.dart';
 import 'help.dart';
 import 'hoteldescription.dart';
+import 'package:intl/intl.dart';
 
 class Offers extends StatefulWidget {
   final String destination;
@@ -22,7 +23,15 @@ class _OffersState extends State<Offers> {
       "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
       "rating": "4.8/5",
       "price": 4000000,
-      "location": "Bali"
+      "location": "bali"
+    },
+    {
+      "name": "Everyday hotel",
+      "image": "assets/pullman.jpg",
+      "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
+      "rating": "4.8/5",
+      "price": 224000,
+      "location": "bali"
     },
     {
       "name": "Raffles Bali",
@@ -30,7 +39,7 @@ class _OffersState extends State<Offers> {
       "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
       "rating": "4.9/5",
       "price": 7000000,
-      "location": "Bali"
+      "location": "bali"
     },
     {
       "name": "Padma Resort Ubud",
@@ -38,7 +47,7 @@ class _OffersState extends State<Offers> {
       "address": "Padma Resort Ubud Banjar Carik, Desa, Puhu,",
       "rating": "4.8/5",
       "price": 3500000,
-      "location": "Bali"
+      "location": "bali"
     },
     {
       "name": "Hotel Indonesia",
@@ -46,7 +55,7 @@ class _OffersState extends State<Offers> {
       "address": "Jl. M.H. Thamrin No.1, Menteng, Kota Jakarta Pusat",
       "rating": "4.7/5",
       "price": 3800000,
-      "location": "Jakarta"
+      "location": "jakarta"
     },
     {
       "name": "Four Seasons jakarta",
@@ -54,7 +63,7 @@ class _OffersState extends State<Offers> {
       "address": "Jl. Gatot Subroto No.18, Kuningan Bar. Kota Jakarta Pusat",
       "rating": "4.8/5",
       "price": 3380000,
-      "location": "Jakarta"
+      "location": "jakarta"
     },
     {
       "name": "Grand Gyatt Jakarta",
@@ -62,7 +71,7 @@ class _OffersState extends State<Offers> {
       "address": " Jl. M.H. Thamrin No.Kav. 28-30, Gondangdia, Kota Jakarta Pusat",
       "rating": "4.7/5",
       "price": 3000000,
-      "location": "Jakarta"
+      "location": "jakarta"
     },
     {
       "name": "Aryaduta",
@@ -70,7 +79,15 @@ class _OffersState extends State<Offers> {
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 2560000,
-      "location": "Medan"
+      "location": "medan"
+    },
+    {
+      "name": "Swiss-Bellinn",
+      "image": "assets/swissmedan.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
+      "rating": "4.4/5",
+      "price": 2560000,
+      "location": "medan"
     },
     {
       "name": "JW mariott",
@@ -78,7 +95,7 @@ class _OffersState extends State<Offers> {
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 300000,
-      "location": "Medan"
+      "location": "medan"
     },
     {
       "name": "Pullman",
@@ -86,7 +103,23 @@ class _OffersState extends State<Offers> {
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 2000000,
-      "location": "Medan"
+      "location": "medan"
+    },
+    {
+      "name": "JW Marriott",
+      "image": "assets/HI.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
+      "rating": "4.0/5",
+      "price": 640000,
+      "location": "surabaya"
+    },
+    {
+      "name": "Swiss-bellinn",
+      "image": "assets/swisspakarang.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
+      "rating": "4.0/5",
+      "price": 500000,
+      "location": "surabaya"
     },
     {
       "name": "JW Marriott",
@@ -94,23 +127,31 @@ class _OffersState extends State<Offers> {
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
       "rating": "4.0/5",
       "price": 500000,
-      "location": "Surabaya"
+      "location": "surabaya"
     },
     {
-      "name": "JW Marriott",
-      "image": "assets/HI.jpg",
+      "name": "Ibis Styles",
+      "image": "assets/ibisbandung.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Bandung baru.",
+      "rating": "4.0/5",
+      "price": 600000,
+      "location": "bandung"
+    },
+    {
+      "name": "Garrya bianti",
+      "image": "assets/bianti.jpg",
+      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Yogyakarta baru.",
+      "rating": "4.0/5",
+      "price": 500000,
+      "location": "yogyakarta"
+    },
+    {
+      "name": "Tree park hotel",
+      "image": "assets/treepark.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
       "rating": "4.0/5",
       "price": 500000,
-      "location": "Surabaya"
-    },
-    {
-      "name": "JW Marriott",
-      "image": "assets/HI.jpg",
-      "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
-      "rating": "4.0/5",
-      "price": 500000,
-      "location": "Surabaya"
+      "location": "banjarmasin"
     },
   ];
 
@@ -213,11 +254,21 @@ class _OffersState extends State<Offers> {
       String rating,
       int price,
       ) {
+    final formatCurrency = NumberFormat("#,###", "id_ID"); // Format for Indonesian currency
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HotelDesc()),
+          MaterialPageRoute(
+            builder: (context) => HotelDesc(
+              name: hotelName,
+              image: imagePath,
+              address: address,
+              rating: rating,
+              price: price,
+            ),
+          ),
         );
       },
       child: Padding(
@@ -261,7 +312,10 @@ class _OffersState extends State<Offers> {
                     ),
                     Text(address),
                     const SizedBox(height: 8),
-                    Text("Rp$price,00/Malam", style: const TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      "Rp${formatCurrency.format(price)},00/Malam",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
@@ -271,4 +325,5 @@ class _OffersState extends State<Offers> {
       ),
     );
   }
+
 }

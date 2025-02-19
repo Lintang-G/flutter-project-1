@@ -28,16 +28,16 @@ class _MainState extends State<Main> {
   }
 
   final List<Map<String, String>> _carouselItems = [
-    {'title': 'Bali', 'image': 'assets/bali.jpeg'},
-    {'title': 'Medan', 'image': 'assets/medan.jpeg'},
-    {'title': 'Jakarta', 'image': 'assets/jakarta.jpg'},
-    {'title': 'Surabaya', 'image': 'assets/surabaya.jpeg'},
+    {'title': 'bali', 'image': 'assets/bali.jpeg'},
+    {'title': 'medan', 'image': 'assets/medan.jpeg'},
+    {'title': 'jakarta', 'image': 'assets/jakarta.jpg'},
+    {'title': 'surabaya', 'image': 'assets/surabaya.jpeg'},
   ];
 
   final TextEditingController _destinationController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   List<String> _suggestions = [];
-  List<String> _allDestinations = ['Bali', 'Medan', 'Jakarta', 'Surabaya'];
+  List<String> _allDestinations = ['bali', 'medan', 'jakarta', 'surabaya'];
 
   bool _showDropdown = false;
 
@@ -118,9 +118,9 @@ class _MainState extends State<Main> {
                             ),
                             onChanged: (text) {
                               setState(() {
+                                String query = text.trim().toLowerCase();
                                 _suggestions = _allDestinations
-                                    .where((destination) =>
-                                    destination.toLowerCase().contains(text.toLowerCase()))
+                                    .where((destination) => destination.toLowerCase().contains(query))
                                     .toList();
                                 _showDropdown = _focusNode.hasFocus && _suggestions.isNotEmpty;
                               });
@@ -152,45 +152,22 @@ class _MainState extends State<Main> {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Tanggal masuk',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                prefixIcon: const Icon(Icons.calendar_today),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Tanggal keluar',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                prefixIcon: const Icon(Icons.calendar_today),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
                     SizedBox(
                     width: 339, // Adjust the width as needed
                       child: FilledButton(
                         onPressed: () {
+                          setState(() {
+                            _destinationController.text = _destinationController.text.trim(); // Remove extra spaces
+                          });
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Offers(destination: _destinationController.text),
+                              builder: (context) => Offers(destination: _destinationController.text.toLowerCase()), // Convert to lowercase
                             ),
                           );
                         },
+
                         style: FilledButton.styleFrom(
                           backgroundColor: Colors.blueAccent,
                           padding: const EdgeInsets.symmetric(vertical: 16),

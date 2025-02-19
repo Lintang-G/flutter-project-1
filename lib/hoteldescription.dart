@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 import 'booking.dart';
-import 'Offers.dart';
 
 class HotelDesc extends StatelessWidget {
+  final String name;
+  final String image;
+  final String address;
+  final String rating;
+  final int price;
+
+  const HotelDesc({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.address,
+    required this.rating,
+    required this.price,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,10 +26,7 @@ class HotelDesc extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Offers(destination: AutofillHints.addressCity)),
-            );
+            Navigator.pop(context);
           },
         ),
       ),
@@ -24,7 +35,7 @@ class HotelDesc extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              'assets/intercontinental.jpg',
+              image,
               height: 200,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
@@ -39,21 +50,20 @@ class HotelDesc extends StatelessWidget {
                       Icon(Icons.hotel, color: Colors.blueAccent),
                       SizedBox(width: 8),
                       Text(
-                        "Hotel - 4.8/5",
+                        "Hotel - $rating",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "Intercontinental Bali Resort",
+                    name,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 4),
-                  Text("Jimbaran, South Kuta, Badung Regency, Bali"),
-                  Text("Uluwatu St No.45 80361"),
+                  Text(address),
                   Divider(),
-                  _buildRoomOptions(context), // ✅ Pass context
+                  _buildRoomOptions(context),
                   SizedBox(height: 16),
                   _buildPolicySection(),
                 ],
@@ -71,8 +81,8 @@ class HotelDesc extends StatelessWidget {
       children: [
         Text("Jenis kamar yang direkomendasikan", style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 8),
-        _buildRoomCard(context, "Standard Room", "assets/kamar1.jpg", "1", 4500000),
-        _buildRoomCard(context, "Deluxe Room", "assets/kamar2.jpg", "2", 5800000),
+        _buildRoomCard(context, "Standard Room", "assets/kamar1.jpg", "1", price),
+        _buildRoomCard(context, "Deluxe Room", "assets/kamar2.jpg", "2", price + 200000),
       ],
     );
   }
@@ -142,7 +152,6 @@ class HotelDesc extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildPolicySection() {
     return Column(
