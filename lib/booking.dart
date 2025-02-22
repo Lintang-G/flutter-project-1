@@ -4,7 +4,20 @@ import 'bank.dart';
 import 'day.dart';
 
 class BookingPage extends StatefulWidget {
-  const BookingPage({super.key});
+  final String hotelName;
+  final String hotelAddress;
+  final String roomPrice; // Make roomPrice a parameter
+  final String checkInDate; // Add checkInDate
+  final String checkOutDate; // Add checkOutDate
+
+  const BookingPage({
+    super.key,
+    required this.hotelName,
+    required this.hotelAddress,
+    required this.roomPrice,
+    required this.checkInDate, // Add checkInDate to constructor
+    required this.checkOutDate, // Add checkOutDate to constructor
+  });
 
   @override
   State<BookingPage> createState() => _BookingPageState();
@@ -37,15 +50,15 @@ class _BookingPageState extends State<BookingPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Intercontinental Bali Resort",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Text(
+              widget.hotelName, // Use the passed hotel name
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const Text("Uluwatu St No.45, Jimbaran, South Kuta, Badung Regency, Bali 80361"),
+            Text(widget.hotelAddress), // Use the passed hotel address
             const SizedBox(height: 10),
-            const Text(
-              "Jumat, 1 Januari 2025 - Sabtu, 01 Februari 2025",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              "${widget.checkInDate} - ${widget.checkOutDate}", // Display check-in and check-out dates
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
 
@@ -147,7 +160,7 @@ class _BookingPageState extends State<BookingPage> {
                 children: [
                   const Text("Jumlah yang Harus Dibayarkan"),
                   Text(
-                    "Rp $roomPrice",
+                    "Rp ${widget.roomPrice}", // Use the passed room price
                     style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
                   ),
                 ],

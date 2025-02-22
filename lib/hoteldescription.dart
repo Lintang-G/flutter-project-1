@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'booking.dart';
+import 'package:intl/intl.dart';
 
 class HotelDesc extends StatelessWidget {
   final String name;
@@ -7,15 +8,19 @@ class HotelDesc extends StatelessWidget {
   final String address;
   final String rating;
   final int price;
+  final String location; // Add location parameter
 
-  const HotelDesc({
+  HotelDesc({
     super.key,
     required this.name,
     required this.image,
     required this.address,
     required this.rating,
     required this.price,
+    required this.location, // Initialize it
   });
+
+  final formatCurrency = NumberFormat("#,###", "id_ID");
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class HotelDesc extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(context, location); // Pass the location back
           },
         ),
       ),
@@ -133,14 +138,26 @@ class HotelDesc extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Rp $price", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text("Rp ${formatCurrency.format(price)}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                   ],
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    // Example date, replace with your date picker or logic.
+                    String checkInDate = "Jumat, 1 Januari 2025";
+                    String checkOutDate = "Sabtu, 01 Februari 2025";
+
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BookingPage()),
+                      MaterialPageRoute(
+                        builder: (context) => BookingPage(
+                          hotelName: name,
+                          hotelAddress: address,
+                          roomPrice: formatCurrency.format(price),
+                          checkInDate: checkInDate,
+                          checkOutDate: checkOutDate,
+                        ),
+                      ),
                     );
                   },
                   child: Text("Pesan Sekarang"),

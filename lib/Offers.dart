@@ -16,142 +16,156 @@ class Offers extends StatefulWidget {
 }
 
 class _OffersState extends State<Offers> {
+  String selectedDestination = "";
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDestination = widget.destination;
+  }
+
   final List<Map<String, dynamic>> _hotels = [
     {
       "name": "Intercontinental Bali Resort",
+      "location": "bali",
       "image": "assets/intercontinental.jpg",
       "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
       "rating": "4.8/5",
       "price": 4000000,
-      "location": "bali"
     },
     {
       "name": "Everyday hotel",
+      "location": "bali",
       "image": "assets/pullman.jpg",
       "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
-      "rating": "4.8/5",
+      "rating": "3.2/5",
       "price": 224000,
-      "location": "bali"
+
     },
     {
       "name": "Raffles Bali",
+      "location": "bali",
       "image": "assets/76947569_XL.jpg",
       "address": "Uluwatu St No.45, Jimbaran, Kuta selatan",
       "rating": "4.9/5",
       "price": 7000000,
-      "location": "bali"
+
     },
     {
       "name": "Padma Resort Ubud",
+      "location": "bali",
       "image": "assets/images.jpeg",
       "address": "Padma Resort Ubud Banjar Carik, Desa, Puhu,",
       "rating": "4.8/5",
       "price": 3500000,
-      "location": "bali"
+
     },
     {
       "name": "Hotel Indonesia",
+      "location": "jakarta",
       "image": "assets/HIjakarta.jpg",
       "address": "Jl. M.H. Thamrin No.1, Menteng, Kota Jakarta Pusat",
       "rating": "4.7/5",
       "price": 3800000,
-      "location": "jakarta"
     },
     {
       "name": "Four Seasons jakarta",
+      "location": "jakarta",
       "image": "assets/download.jpeg",
       "address": "Jl. Gatot Subroto No.18, Kuningan Bar. Kota Jakarta Pusat",
       "rating": "4.8/5",
       "price": 3380000,
-      "location": "jakarta"
+
     },
     {
       "name": "Grand Gyatt Jakarta",
+      "location": "jakarta",
       "image": "assets/images1.jpeg",
       "address": " Jl. M.H. Thamrin No.Kav. 28-30, Gondangdia, Kota Jakarta Pusat",
       "rating": "4.7/5",
       "price": 3000000,
-      "location": "jakarta"
+
     },
     {
       "name": "Aryaduta",
+      "location": "medan",
       "image": "assets/aryaduta.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 2560000,
-      "location": "medan"
     },
     {
       "name": "Swiss-Bellinn",
+      "location": "medan",
       "image": "assets/swissmedan.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 2560000,
-      "location": "medan"
     },
     {
       "name": "JW mariott",
+      "location": "medan",
       "image": "assets/images2.jpeg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 300000,
-      "location": "medan"
     },
     {
       "name": "Pullman",
+      "location": "medan",
       "image": "assets/pullman.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Medan Bar.",
       "rating": "4.4/5",
       "price": 2000000,
-      "location": "medan"
     },
     {
       "name": "JW Marriott",
+      "location": "surabaya",
       "image": "assets/HI.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
       "rating": "4.0/5",
-      "price": 640000,
-      "location": "surabaya"
+      "price": 640000
     },
     {
       "name": "Swiss-bellinn",
+      "location": "surabaya",
       "image": "assets/swisspakarang.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
       "rating": "4.0/5",
       "price": 500000,
-      "location": "surabaya"
     },
     {
       "name": "JW Marriott",
+      "location": "surabaya",
       "image": "assets/HI.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
       "rating": "4.0/5",
       "price": 500000,
-      "location": "surabaya"
     },
     {
       "name": "Ibis Styles",
+      "location": "bandung",
       "image": "assets/ibisbandung.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Bandung baru.",
       "rating": "4.0/5",
       "price": 600000,
-      "location": "bandung"
     },
     {
       "name": "Garrya bianti",
+      "location": "yogyakarta",
       "image": "assets/bianti.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Yogyakarta baru.",
       "rating": "4.0/5",
       "price": 500000,
-      "location": "yogyakarta"
+
     },
     {
       "name": "Tree park hotel",
+      "location": "banjarmasin",
       "image": "assets/treepark.jpg",
       "address": "Jl. Putri Hijau No.10, Kesawan, Kec. Surabaya baru.",
       "rating": "4.0/5",
       "price": 500000,
-      "location": "banjarmasin"
     },
   ];
 
@@ -213,6 +227,7 @@ class _OffersState extends State<Offers> {
             hotel["address"],
             hotel["rating"],
             hotel["price"],
+            hotel["location"]
           );
         },
       ),
@@ -253,12 +268,13 @@ class _OffersState extends State<Offers> {
       String address,
       String rating,
       int price,
+      String location // Add location as a parameter
       ) {
-    final formatCurrency = NumberFormat("#,###", "id_ID"); // Format for Indonesian currency
+    final formatCurrency = NumberFormat("#,###", "id_ID");
 
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        final result = await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => HotelDesc(
@@ -267,9 +283,17 @@ class _OffersState extends State<Offers> {
               address: address,
               rating: rating,
               price: price,
+              location: location, // Pass the location here
             ),
           ),
         );
+
+        // If a location is returned, update Offers with the same destination
+        if (result != null && result is String) {
+          setState(() {
+            selectedDestination = result;
+          });
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
